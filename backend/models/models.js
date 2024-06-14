@@ -32,3 +32,16 @@ const ProductSchema = mongoose.Schema(
 
 const Product = mongoose.model('Product', ProductSchema);
 
+const UserSchema = mongoose.Schema(
+    {
+        email: { type: String, required: true, unique: true, label: 'Provide Email' },
+        password: { type: String, required: true, unique: true, label: 'Provide Password' }
+    },
+    {
+        timestamps:true
+    }
+)
+
+const User = mongoose.model('User', UserSchema)
+
+export { Product, User };

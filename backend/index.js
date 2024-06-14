@@ -1,7 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import { books_router } from './routes/Books_routes.js';
+import { books_router } from './routes/Books.js';
+import { auth_router } from './routes/User.js';
 
 dotenv.config();
 const app = express();
@@ -12,15 +13,13 @@ app.get('/', (req, res) => {
 })
 
 app.use('/books', books_router)
-
-console.log(process.env.MONGO_URI , process.env.PORT);
+app.use('/auth', auth_router)
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         app.listen(process.env.PORT, () => {
             console.log(`App is listening at port ${process.env.PORT}`);
         })
-        console.log('connected');
     }).catch((error) => {
         console.log(error.message);
     })

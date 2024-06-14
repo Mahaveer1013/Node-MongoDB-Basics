@@ -1,4 +1,4 @@
-export const getBooks = async (req, res) => {
+const getBooks = async (req, res) => {
     try {
         const data = await Product.find()
         res.status(200).send(data)    
@@ -7,7 +7,7 @@ export const getBooks = async (req, res) => {
     }
 }
 
-export const getSingleBook = async (req, res) => {
+const getSingleBook = async (req, res) => {
     try {
         const data = await Product.findById(req.params.id);
         res.status(200).send(data);
@@ -16,7 +16,7 @@ export const getSingleBook = async (req, res) => {
     }
 }
 
-export const addBooks = async (req, res) => {
+const addBooks = async (req, res) => {
     try {
         const data = await Product.create(req.body)
         res.status(200).send({ 'message': 'POST ADDED' , 'data': data});
@@ -25,7 +25,7 @@ export const addBooks = async (req, res) => {
     }    
 }
 
-export const updateBooks = async (req, res) => {
+const updateBooks = async (req, res) => {
     try {
         await Product.findByIdAndUpdate(req.params.id, req.body);
         const data = await Product.findById(req.params.id);
@@ -35,7 +35,7 @@ export const updateBooks = async (req, res) => {
     }
 }
 
-export const deleteBooks = async (req, res) => {
+const deleteBooks = async (req, res) => {
     try {
         await Product.findByIdAndDelete(req.params.id);
         res.status(200).send({ 'message': 'data deleted successfully' });
@@ -43,3 +43,11 @@ export const deleteBooks = async (req, res) => {
         res.status(404).send({ 'error': err.message });
     }
 }
+
+export {
+    getBooks,
+    getSingleBook,
+    addBooks,
+    updateBooks,
+    deleteBooks,
+};
