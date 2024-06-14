@@ -1,4 +1,4 @@
-import { getBooks, getSingleBook, updateBooks, deleteBooks, addBooks } from '../models/Books_model.js'
+import { getBooks, getSingleBook, updateBooks, deleteBooks, addBooks } from '../controllers/Book_controller.js'
 import express from 'express';
 
 export const books_router = express.Router();
